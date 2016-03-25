@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -34,27 +34,51 @@
         <div class="item-container-content">
 
             <label class="item">
-                Display Temperature in
-                <select id="temperatureFormat" class="item-select">
-                    <option id="optF" value="0" class="item-select-option">Fahrenheit</option>
-                    <option id="optC" value="1" class="item-select-option">Celsius</option>
-                </select>
-            </label>
-
-            <label class="item">
                 Hours and Minutes Separator
                 <select id="hoursMinutesSeparator" class="item-select">
                     <option id="optColon" value="0" class="item-select-option">Colon :</option>
                     <option id="optDot" value="1" class="item-select-option">Dot .</option>
                 </select>
             </label>
-
             <label class="item">
                 Date format
                 <select id="dateFormat" class="item-select">
                     <option id="optMDY" value="0" class="item-select-option">Month Day Year</option>
                     <option id="optDMY" value="1" class="item-select-option">Day Month Year</option>
                     <option id="optYMD" value="2" class="item-select-option" style="display:none">YYYY-MM-DD</option>
+                </select>
+            </label>
+            <label class="item" style="display:none" id="xDivLanguage">
+                Language
+                <select id="language" class="item-select">
+                    <option id="default" value="255" class="item-select-option">Default</option>
+                    <option id="catalan" value="5" class="item-select-option" style="display:none">Català</option>
+                    <option id="italian" value="1" class="item-select-option">Italiano</option>
+                    <option id="malay" value="6" class="item-select-option" style="display:none">Melayu</option>
+                    <option id="dutch" value="3" class="item-select-option" style="display:none">Nederlandse</option>
+                    <option id="norvegian" value="4" class="item-select-option" style="display:none">Norsk</option>
+                    <option id="swedish" value="0" class="item-select-option">Svenska</option>
+                    <option id="russian" value="2" class="item-select-option" style="display:none">Русский</option>
+                </select>
+            </label>
+
+            <hr />
+
+            <label class="item" id="lblForecastIoApiKey" style="display:none">
+                Forecast.io API Key
+                <div class="item-input-wrapper item-input-wrapper-button">
+                    <input type="text" id="xtxtForecastIoApiKey" class="item-input" placeholder="API KEY" style="color:black">
+                </div>
+                <div style="font-size:small;">
+                    Register at https://developer.forecast.io to receive API Key. This is a one time procedure, no billing information required there.
+                 </div>
+            </label>
+
+            <label class="item">
+                Display Temperature in
+                <select id="temperatureFormat" class="item-select">
+                    <option id="optF" value="0" class="item-select-option">Fahrenheit</option>
+                    <option id="optC" value="1" class="item-select-option">Celsius</option>
                 </select>
             </label>
 
@@ -102,27 +126,13 @@
                     <option id="opt60" value="60" class="item-select-option">Every hour</option>
                 </select>
             </label>
-
-            <label class="item" style="display:none" id="xDivLanguage">
-                Language
-                <select id="language" class="item-select">
-                    <option id="default" value="255" class="item-select-option">Default</option>
-                    <option id="catalan" value="5" class="item-select-option" style="display:none">Català</option>
-                    <option id="italian" value="1" class="item-select-option">Italiano</option>
-                    <option id="malay" value="6" class="item-select-option" style="display:none">Melayu</option>
-                    <option id="dutch" value="3" class="item-select-option" style="display:none">Nederlandse</option>
-                    <option id="norvegian" value="4" class="item-select-option" style="display:none">Norsk</option>
-                    <option id="swedish" value="0" class="item-select-option" >Svenska</option>
-                    <option id="russian" value="2" class="item-select-option" style="display:none">Русский</option>
-                </select>
-            </label>
-
-
-
+            <hr />
             <label class="item">
                 Invert colors
                 <input type="checkbox" class="item-checkbox" name="invertColors" id="invertColors">
             </label>
+
+            <hr />
 
             <label class="item" id="bt217">
                 Buzz on BT connect/disconnect
@@ -208,7 +218,7 @@
             if (getURLVariable('version') >= '2.18') { //after version 2.18 use new bluetooth dropdown
                 $("#bt217").hide();
                 $("#bt218").show();
-            } 
+            }
 
             // loading settings
             try {
@@ -229,7 +239,8 @@
                     locationService: 0,
                     woeid: 0,
                     weatherInterval: 60,
-                    language: 255
+                    language: 255,
+                    forecastIoApiKey: ''
                 };
             }
 
@@ -260,6 +271,20 @@
             $('#weatherInterval').val(settings.weatherInterval ? settings.weatherInterval : 60); // reading update interval and if not set - make it an hour
             $('#language').val(settings.language || settings.language == 0 ? settings.language : 255);
 
+            //after version 2.21 switched to Forecast.IO weather and Nominatim geocoding
+            if (getURLVariable('version') >= '2.21') {
+
+                //disabling manual location
+                if ($('#locationService').val() == '1') $('#locationService').val('0');
+                $('#manual').hide();
+
+                //showing input box for Forecast IO API Key
+                $('#lblForecastIoApiKey').show();
+
+                //restoring saved API key
+                $('#xtxtForecastIoApiKey').val(settings.forecastIoApiKey? settings.forecastIoApiKey: '');
+            }
+
             //assigning save button
 
             $('#xbtnSave').click(function () {
@@ -272,6 +297,7 @@
                 }
 
                 settings.woeid = parseInt($('#xtxtWOEID').val());
+                settings.forecastIoApiKey = $('#xtxtForecastIoApiKey').val();
 
                 localStorage.setItem("clean_smart_settings", JSON.stringify(settings));
 
