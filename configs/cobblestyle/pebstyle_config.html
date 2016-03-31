@@ -88,8 +88,8 @@
                         <option value="3" class="item-select-option">Disabled</option>
 
                         <option id="optLocationStreet" value="2" class="item-select-option">Current Location</option>
-                        <option id="optLocationTown" value="6" style="display:none" class="item-select-option">Location town/city levek</option>
-                        <option id="optLocationCountry" value="7" style="display:none" class="item-select-option">Location state/country level</option>
+                        <option id="optLocationTown" value="6" style="display:none" class="item-select-option">Location (town)</option>
+                        <option id="optLocationCountry" value="7" style="display:none" class="item-select-option">Location (state)</option>
 
                         <option value="1" class="item-select-option" selected="selected">Local Time</option>
                         <option value="4" class="item-select-option" style="display:none">Local Military Time</option>
@@ -540,7 +540,7 @@
 
             // after version 2.21 enable detailed location
             if (getURLVariable('version') >= '2.21') {
-                $("#optLocationStreet").html("Location road/street level");
+                $("#optLocationStreet").html("Location (street)");
                 $("#optLocationTown").show();
                 $("#optLocationCountry").show();
 
