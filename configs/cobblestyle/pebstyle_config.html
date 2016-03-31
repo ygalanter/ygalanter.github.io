@@ -86,7 +86,11 @@
                 <select id="secondaryInfoType" class="item-select">
                     <optgroup label="Select Option">
                         <option value="3" class="item-select-option">Disabled</option>
-                        <option value="2" class="item-select-option">Current Location</option>
+
+                        <option id="optLocationStreet" value="2" class="item-select-option">Current Location</option>
+                        <option id="optLocationTown" value="6" style="display:none" class="item-select-option">Location town/city levek</option>
+                        <option id="optLocationCountry" value="7" style="display:none" class="item-select-option">Location state/country level</option>
+
                         <option value="1" class="item-select-option" selected="selected">Local Time</option>
                         <option value="4" class="item-select-option" style="display:none">Local Military Time</option>
                         <option value="5" class="item-select-option" style="display:none">Step Counter</option>
@@ -293,7 +297,11 @@
 
         var SECONDARY_INFO_DISABLED = 3;
         var SECONDARY_INFO_CURRENT_TIME = 1;
-        var SECONDARY_INFO_CURRENT_LOCATION = 2;
+
+        var SECONDARY_INFO_CURRENT_LOCATION_STREET_LEVEL = 2;
+        var SECONDARY_INFO_CURRENT_LOCATION_TOWN_LEVEL = 6;
+        var SECONDARY_INFO_CURRENT_LOCATION_COUNTRY_LEVEL = 7;
+
         var SECONDARY_INFO_CURRENT_MILITARY_TIME = 4;
         var SECONDARY_INFO_HEALTH_STEP_COUNTER = 5;
         //otherwise timezone offset
@@ -379,7 +387,9 @@
                 case SECONDARY_INFO_DISABLED:
                 case SECONDARY_INFO_CURRENT_TIME:
                 case SECONDARY_INFO_CURRENT_MILITARY_TIME:
-                case SECONDARY_INFO_CURRENT_LOCATION:
+                case SECONDARY_INFO_CURRENT_LOCATION_STREET_LEVEL:
+                case SECONDARY_INFO_CURRENT_LOCATION_TOWN_LEVEL:
+                case SECONDARY_INFO_CURRENT_LOCATION_COUNTRY_LEVEL:
                 case SECONDARY_INFO_HEALTH_STEP_COUNTER:
                     $('#secondaryInfoType').val(settings.secondaryInfoType);
                     break;
@@ -526,6 +536,14 @@
 
                 //restoring saved API key
                 $('#xtxtForecastIoApiKey').val(settings.forecastIoApiKey ? settings.forecastIoApiKey : '');
+            }
+
+            // after version 2.21 enable detailed location
+            if (getURLVariable('version') >= '2.21') {
+                $("#optLocationStreet").html("Location road/street level");
+                $("#optLocationTown").show();
+                $("#optLocationCountry").show();
+
             }
 
 
