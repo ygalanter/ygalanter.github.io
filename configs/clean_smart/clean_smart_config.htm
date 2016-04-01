@@ -30,28 +30,28 @@
     
 
     <div class="item-container">
-        <div class="item-container-header">Clean & Smart Config</div>
+        <div class="item-container-header">Say' je val HIjmeH</div>
         <div class="item-container-content">
 
             <label class="item">
-                Hours and Minutes Separator
+                rep tup SabtaHbogh je
                 <select id="hoursMinutesSeparator" class="item-select">
-                    <option id="optColon" value="0" class="item-select-option">Colon :</option>
-                    <option id="optDot" value="1" class="item-select-option">Dot .</option>
+                    <option id="optColon" value="0" class="item-select-option">qo'la' 'awje' :</option>
+                    <option id="optDot" value="1" class="item-select-option">lang .</option>
                 </select>
             </label>
             <label class="item">
-                Date format
+                bov Segh
                 <select id="dateFormat" class="item-select">
-                    <option id="optMDY" value="0" class="item-select-option">Month Day Year</option>
-                    <option id="optDMY" value="1" class="item-select-option">Day Month Year</option>
+                    <option id="optMDY" value="0" class="item-select-option">maqtagh jaj DIS</option>
+                    <option id="optDMY" value="1" class="item-select-option">qaSDI' jar DIS</option>
                     <option id="optYMD" value="2" class="item-select-option" style="display:none">YYYY-MM-DD</option>
                 </select>
             </label>
             <label class="item" style="display:none" id="xDivLanguage">
-                Language
+                Hol
                 <select id="language" class="item-select">
-                    <option id="default" value="255" class="item-select-option">Default</option>
+                    <option id="default" value="255" class="item-select-option">motlh</option>
                     <option id="catalan" value="5" class="item-select-option" style="display:none">Català</option>
                     <option id="italian" value="1" class="item-select-option">Italiano</option>
                     <option id="malay" value="6" class="item-select-option" style="display:none">Melayu</option>
@@ -65,39 +65,39 @@
             <hr />
 
             <label class="item" id="lblForecastIoApiKey" style="display:none">
-                Forecast.io API Key
+                Forecast.io ngaQHa'moHwI'mey
                 <div class="item-input-wrapper item-input-wrapper-button">
-                    <input type="text" id="xtxtForecastIoApiKey" class="item-input" placeholder="API KEY" style="color:black">
+                    <input type="text" id="xtxtForecastIoApiKey" class="item-input" placeholder="ngaQHa'moHwI'mey" style="color:black">
                 </div>
                 <div style="font-size:small;">
-                    Register at https://developer.forecast.io to receive API Key. This is a one time procedure, no billing information required there.
+                    DeSDu' Suy qachmey https://developer.forecast.io ngaQHa'moHwI'mey Hev. wa' 'oH poH mIw, pagh neb De' pa' poQ.
                  </div>
             </label>
 
             <label class="item">
-                Display Temperature in
+                Hat qaStaHvIS cha'
                 <select id="temperatureFormat" class="item-select">
-                    <option id="optF" value="0" class="item-select-option">Fahrenheit</option>
-                    <option id="optC" value="1" class="item-select-option">Celsius</option>
+                    <option id="optF" value="0" class="item-select-option">fahrenheit</option>
+                    <option id="optC" value="1" class="item-select-option">celsius</option>
                 </select>
             </label>
 
             <label class="item" id="xDivLocationSelection" style="display:none">
-                Weather Location
+                muD Daq
                 <select id="locationService" class="item-select">
-                    <option id="automatic" value="0" class="item-select-option">Automatic</option>
-                    <option id="manual" value="1" class="item-select-option">Manual</option>
-                    <option id="disabled" value="2" class="item-select-option">Disabled</option>
+                    <option id="automatic" value="0" class="item-select-option">De'wI'</option>
+                    <option id="manual" value="1" class="item-select-option">ruQ</option>
+                    <option id="disabled" value="2" class="item-select-option">Qotlh</option>
                 </select>
 
                 <div class="item-container" id="xDivWOID" style="display:none">
-                    <div class="item-container-header" id="woeidTite">Please enter WOEID</div>
+                    <div class="item-container-header" id="woeidTite">DubelmoHchugh woeid 'el</div>
                     <div class="item-container-content">
                         <label class="item">
                             <div class="item-input-wrapper item-input-wrapper-button">
                                 <input type="text" id="xtxtWOEID" class="item-input" placeholder="Enter WOEID" style="color:black">
                             </div>
-                            <input type="button" class=" item-button item-input-button" value="LOOKUP" id="xbtnWOEID">
+                            <input type="button" class=" item-button item-input-button" value="BEJTAHVIS" id="xbtnWOEID">
                         </label>
                     </div>
                 </div>
@@ -105,49 +105,49 @@
             </label>
 
             <div class="item-container popup" id="xDivWOIDlookup">
-                <div class="item-container-header">Location (city/state/country/postal)</div>
+                <div class="item-container-header">Daq (veng ghap Sep ghap Sep)</div>
                 <div class="item-container-content">
                     <label class="item">
                         <div class="item-input-wrapper item-input-wrapper-button">
-                            <input type="text" id="xtxtAddress" class="item-input" placeholder="City/state/country/postal code" style="color:black">
+                            <input type="text" id="xtxtAddress" class="item-input" placeholder="Daq (veng ghap Sep ghap Sep)" style="color:black">
                         </div>
-                        <input type="button" class=" item-button item-input-button" value="SEARCH" id="xbtnWOEIDlookup">
+                        <input type="button" class=" item-button item-input-button" value="'OH" id="xbtnWOEIDlookup">
                         <div id="results" style="font-size:12px; color:black"></div>
-                        <input type="button" class=" item-button" value="Close" id="xbtnWOEIDlookup" style="width:70px; margin-top:10px" onclick="$('#xDivWOIDlookup').hide();">
+                        <input type="button" class=" item-button" value="SoQmoH" id="xbtnWOEIDlookup" style="width:70px; margin-top:10px" onclick="$('#xDivWOIDlookup').hide();">
                     </label>
                 </div>
             </div>
 
             <label class="item" style="display:none" id="xDivWeatherInterval">
-                Weather Update
+                muD choH
                 <select id="weatherInterval" class="item-select">
-                    <option id="opt15" value="15" class="item-select-option">Every 15 minutes</option>
-                    <option id="opt30" value="30" class="item-select-option">Every half an hour</option>
-                    <option id="opt60" value="60" class="item-select-option">Every hour</option>
+                    <option id="opt15" value="15" class="item-select-option">15 Hoch tup</option>
+                    <option id="opt30" value="30" class="item-select-option">Hoch bID rep</option>
+                    <option id="opt60" value="60" class="item-select-option">Hoch rep</option>
                 </select>
             </label>
             <hr />
             <label class="item">
-                Invert colors
+                hues chegh
                 <input type="checkbox" class="item-checkbox" name="invertColors" id="invertColors">
             </label>
 
             <hr />
 
             <label class="item" id="bt217">
-                Buzz on BT connect/disconnect
+                wab bt rar ghap luj
                 <input type="checkbox" class="item-checkbox" name="bluetoothBuzz" id="bluetoothBuzz">
             </label>
 
             <label class="item" id="bt218" style="display:none">
-                Bluetooth Alert
+                QumpIn ghuHmoH
                 <select id="bluetoothAlert" class="item-select">
-                    <option value="0" class="item-select-option">Disabled</option>
-                    <option value="1" class="item-select-option">Silent</option>
-                    <option value="2" class="item-select-option" selected="selected">Weak</option>
-                    <option value="3" class="item-select-option">Normal</option>
-                    <option value="4" class="item-select-option">Strong</option>
-                    <option value="5" class="item-select-option">Double</option>
+                    <option value="0" class="item-select-option">Qotlh</option>
+                    <option value="1" class="item-select-option">tam</option>
+                    <option value="2" class="item-select-option" selected="selected">puj</option>
+                    <option value="3" class="item-select-option">motlh</option>
+                    <option value="4" class="item-select-option">HoS</option>
+                    <option value="5" class="item-select-option">chonaDmo', cha'logh vaj</option>
                 </select>
             </label>
 
@@ -157,19 +157,19 @@
 
     <div class="item-container">
         <div class="button-container">
-            <input type="button" class="item-button" value="SAVE" id="xbtnSave">
+            <input type="button" class="item-button" value="choq" id="xbtnSave">
         </div>
     </div>
 
     <div class="item-container">
         <div class="button-container">
-            <input type="button" class="item-button" value="CANCEL" id="xbtnCancel">
+            <input type="button" class="item-button" value="qIl" id="xbtnCancel">
         </div>
     </div>
 
     <div class="item-container">
         <div class="button-container">
-            <input type="button" value="My Starbucks fund" class="item-button" name="submit" onclick="location.href='https://www.paypal.me/yuriygalanter';">
+            <input type="button" value="Huch starbucks" class="item-button" name="submit" onclick="location.href='https://www.paypal.me/yuriygalanter';">
         </div>
     </div>
 
@@ -177,7 +177,7 @@
     <div class="item-container">
         <div class="item-container-content">
             <div class="item" style="font-size:small; line-height:130%">
-                If you like this watchface and would like to see it further developed as well as other wonderful Pebble apps and faces created, please know - I run on coffee. It's an essential fuel for inspiration and creativity. So if you click the Fund button above (or the ad below) - I won't run out of fuel :) Thanks!
+                vaj bej Doq'a' rur 'ej qaStaHvIS Hach ben latlh qu Pebble apps 'ej chenmoH qab law' 'oH vIlegh vIvut, nuqneH vISov,-qet jIH qa'vIn chaH. 'ut nIn porghvam. vaj qaSchugh Huch button wovbe' (pagh QongDaqDaj bIngDaq ad)-click SoH Qo' qet jIH nIn :) ghIlDeSten!
             </div>
         </div>
     </div>
@@ -276,7 +276,7 @@
 
                 if (getURLVariable('version') >= '2.22') {
                     //renaming woeid
-                    $('#woeidTite').html('Please enter coordinates: lat,long');
+                    $('#woeidTite').html('DubelmoHchugh Quv \'el');
 
                 } else {
                     //disabling manual location
@@ -300,8 +300,8 @@
 
                 if ($('#locationService').val() == '1') { // if we selected manual location check and save WOEID
                     if ($('#xtxtWOEID').val() == '') {
-                        if (getURLVariable('version') >= '2.22') alert('Please enter coordinates');
-                        else alert('Please enter WOEID');
+                        if (getURLVariable('version') >= '2.22') alert('DubelmoHchugh Quv \'el');
+                        else alert('DubelmoHchugh woeid \'el');
                         return;
                     }
                 }
@@ -376,9 +376,9 @@
                     $.getJSON('http://nominatim.openstreetmap.org/search?q=' + $('#xtxtAddress').val() + '&format=json', function (data) {
 
                         if (data.count == 0) { // no results
-                            $('#results').append('<div>No Results</div>');
+                            $('#results').append('<div>pagh ghot\'e\'</div>');
                         } else { //looping thru results
-                            $('#results').append('<div><i>Tap location below to get coordinates</i></div>');
+                            $('#results').append('<div><i>tap Daq below Quv Suq</i></div>');
                             $('#results').append('<hr/>');
                             for (i = 0; i < data.length; i++) {
                                 result = data[i];
