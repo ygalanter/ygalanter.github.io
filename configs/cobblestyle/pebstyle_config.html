@@ -32,243 +32,243 @@
 <body>
 
     <div class="item-container">
-        <div class="item-container-header">QumpIn DuH</div>
+        <div class="item-container-header">Bluetooth Options</div>
         <div class="item-container-content">
 
             <label class="item">
-                QumpIn ghuHmoH
+                Bluetooth Alert
                 <select id="bluetoothAlert" class="item-select">
-                    <option value="0" class="item-select-option">Qotlh</option>
-                    <option value="1" class="item-select-option">tam</option>
-                    <option value="2" class="item-select-option" selected="selected">puj</option>
-                    <option value="3" class="item-select-option">motlh</option>
-                    <option value="4" class="item-select-option">HoS</option>
-                    <option value="5" class="item-select-option">chonaDmo', cha'logh vaj</option>
+                    <option value="0" class="item-select-option">Disabled</option>
+                    <option value="1" class="item-select-option">Silent</option>
+                    <option value="2" class="item-select-option" selected="selected">Weak</option>
+                    <option value="3" class="item-select-option">Normal</option>
+                    <option value="4" class="item-select-option">Strong</option>
+                    <option value="5" class="item-select-option">Double</option>
                 </select>
             </label>
 
             <label class="item" id="xdivbluetoothIcon" style="display:none">
-                QumpIn mIllogh
+                Bluetooth Icon
                 <select id="bluetoothIcon" class="item-select">
-                    <option value="0" class="item-select-option">reH cha'</option>
-                    <option value="1" class="item-select-option">So' rar</option>
-                    <option value="2" class="item-select-option">reH So'</option>
+                    <option value="0" class="item-select-option">Always Visible</option>
+                    <option value="1" class="item-select-option">Hide Connected</option>
+                    <option value="2" class="item-select-option">Always Hidden</option>
                 </select>
             </label>
         </div>
 
-        <div class="item-container-header">So' rar</div>
+        <div class="item-container-header">Time Options</div>
         <div class="item-container-content">
 
             <label class="item">
-                poH DuH
-              <select id="timeSeparator" class="item-select">
-                    <option value="0" class="item-select-option" selected="selected">qo'la' 'awje'</option>
-                    <option value="1" class="item-select-option">lang</option>
+                Time Separator
+                <select id="timeSeparator" class="item-select">
+                    <option value="0" class="item-select-option" selected="selected">Colon</option>
+                    <option value="1" class="item-select-option">Dot</option>
                 </select>
             </label>
 
             <label class="item">
-                'elbogh tlhaq
+                Main Clock
                 <select id="mainClock" class="item-select">
-                    <option value="0" class="item-select-option" selected="selected">bIquv ngo'</option>
-                    <option value="1" class="item-select-option">De'wI'</option>
+                    <option value="0" class="item-select-option" selected="selected">Analog</option>
+                    <option value="1" class="item-select-option">Digital</option>
                 </select>
             </label>
 
             <label class="item" id="xdivSecondHand">
-                cha'DIch ghop chaw'
+                Enable Second Hand
                 <input type="checkbox" class="item-toggle" id="secondHand" checked="checked">
             </label>
 
             <label class="item">
-                <span id="secondaryInfoLabel">De' cha'DIch</span>
+                <span id="secondaryInfoLabel">Secondary Info</span>
                 <select id="secondaryInfoType" class="item-select">
-                    <optgroup label="DuH wIv">
-                        <option value="3" class="item-select-option">Qotlh</option>
+                    <optgroup label="Select Option">
+                        <option value="3" class="item-select-option">Disabled</option>
 
-                        <option id="optLocationStreet" value="2" class="item-select-option">Qu'mey potlh Daq</option>
-                        <option id="optLocationTown" value="6" style="display:none" class="item-select-option">Daq (veng SuvwI')</option>
-                        <option id="optLocationCountry" value="7" style="display:none" class="item-select-option">Daq (Sep)</option>
+                        <option id="optLocationStreet" value="2" class="item-select-option">Current Location</option>
+                        <option id="optLocationTown" value="6" style="display:none" class="item-select-option">Location (town)</option>
+                        <option id="optLocationCountry" value="7" style="display:none" class="item-select-option">Location (state)</option>
 
-                        <option value="1" class="item-select-option" selected="selected">lutu'lu'bej poH</option>
-                        <option value="4" class="item-select-option" style="display:none">lutu'lu'bej poH QI'</option>
-                        <option value="5" class="item-select-option" style="display:none">mIw SuwamHa'bej</option>
+                        <option value="1" class="item-select-option" selected="selected">Local Time</option>
+                        <option value="4" class="item-select-option" style="display:none">Local Military Time</option>
+                        <option value="5" class="item-select-option" style="display:none">Step Counter</option>
                     </optgroup>
 
-                    <optgroup label="pagh poH mIche">
-                        <!--UTC poHzone offcets in minutes-->
-                        <option value="480" data-poHzone="BJS" class="item-select-option">Beijing poH</option>
-                        <option value="60" data-poHzone="BRU" class="item-select-option">Brussels poH</option>
-                        <option value="-180" data-poHzone="BUE" class="item-select-option">Buenos Aires poH</option>
-                        <option value="130" data-poHzone="CAI" class="item-select-option">Cairo poH</option>
-                        <option value="420" data-poHzone="JKT" class="item-select-option">Jakarta poH</option>
-                        <option value="480" data-poHzone="HKG" class="item-select-option">Hong Kong poH</option>
-                        <option value="0" data-poHzone="LON" class="item-select-option">London poH</option>
-                        <option value="-480" data-poHzone="LAX" class="item-select-option">Los Angeles poH</option>
-                        <option value="60" data-poHzone="MAD" class="item-select-option">Madrid poH</option>
-                        <option value="-600" data-poHzone="MEL" class="item-select-option">Melbourne poH</option>
-                        <option value="-360" data-poHzone="MEX" class="item-select-option">Mexico City poH</option>
-                        <option value="180" data-poHzone="MOW" class="item-select-option">Moscow poH</option>
-                        <option value="330" data-poHzone="DEL" class="item-select-option">New Delhi poH</option>
-                        <option value="-300" data-poHzone="NYC" class="item-select-option">New York poH</option>
-                        <option value="60" data-poHzone="PAR" class="item-select-option">Paris poH</option>
-                        <option value="60" data-poHzone="ROM" class="item-select-option">Rome poH</option>
-                        <option value="600" data-poHzone="SYD" class="item-select-option">Sydney poH</option>
-                        <option value="540" data-poHzone="TYO" class="item-select-option">Tokyo poH</option>
-                        <option value="-300" data-poHzone="DCA" class="item-select-option">Washington poH</option>
+                    <optgroup label="Or Timezone">
+                        <!--UTC timezone offcets in minutes-->
+                        <option value="480" data-timezone="BJS" class="item-select-option">Beijing Time</option>
+                        <option value="60" data-timezone="BRU" class="item-select-option">Brussels Time</option>
+                        <option value="-180" data-timezone="BUE" class="item-select-option">Buenos Aires Time</option>
+                        <option value="130" data-timezone="CAI" class="item-select-option">Cairo Time</option>
+                        <option value="420" data-timezone="JKT" class="item-select-option">Jakarta Time</option>
+                        <option value="480" data-timezone="HKG" class="item-select-option">Hong Kong Time</option>
+                        <option value="0" data-timezone="LON" class="item-select-option">London Time</option>
+                        <option value="-480" data-timezone="LAX" class="item-select-option">Los Angeles Time</option>
+                        <option value="60" data-timezone="MAD" class="item-select-option">Madrid Time</option>
+                        <option value="-600" data-timezone="MEL" class="item-select-option">Melbourne Time</option>
+                        <option value="-360" data-timezone="MEX" class="item-select-option">Mexico City Time</option>
+                        <option value="180" data-timezone="MOW" class="item-select-option">Moscow Time</option>
+                        <option value="330" data-timezone="DEL" class="item-select-option">New Delhi Time</option>
+                        <option value="-300" data-timezone="NYC" class="item-select-option">New York Time</option>
+                        <option value="60" data-timezone="PAR" class="item-select-option">Paris Time</option>
+                        <option value="60" data-timezone="ROM" class="item-select-option">Rome Time</option>
+                        <option value="600" data-timezone="SYD" class="item-select-option">Sydney Time</option>
+                        <option value="540" data-timezone="TYO" class="item-select-option">Tokyo Time</option>
+                        <option value="-300" data-timezone="DCA" class="item-select-option">Washington</option>
                     </optgroup>
 
                 </select>
             </label>
 
             <label class="item" id="xdivampmText" style="display:none">
-                <span id="ampmTitle">bIngDaq ghItlh leghlu' am ghap pm Daq ngaSwI' yuvtlhe' wIngaQmoHta'DI'</span>
+                <span id="ampmTitle">Text to replace AM/PM slot</span>
                 <div class="item-input-wrapper item-input-wrapper-button">
-                    <input type="text" id="ampmText" class="item-input" maxlength="14" placeholder="mej chIm De'wI'" style="color:black">
+                    <input type="text" id="ampmText" class="item-input" maxlength="14" placeholder="Leave blank for auto" style="color:black">
                 </div>
             </label>
 
         </div>
 
-        <div class="item-container-header">muD DuH</div>
+        <div class="item-container-header">Weather Options</div>
         <div class="item-container-content">
 
             <label class="item" id="lblForecastIoApiKey" style="display:none">
-                forecast.io ngaQHa'moHwI'mey
+                Forecast.io API Key
                 <div class="item-input-wrapper item-input-wrapper-button">
                     <input type="text" id="xtxtForecastIoApiKey" class="item-input" placeholder="API KEY" style="color:black">
                 </div>
                 <div style="font-size:small;">
-                    DeSDu' Suy qachmey https://developer.forecast.io geti ngaQHa'moHwI'mey. wa' 'oH poH nab pagh neb De' pa' poQ,.
+                    Register at https://developer.forecast.io to receive API Key. This is a one time procedure, no billing information required there.
                 </div>
             </label>
 
             <label class="item">
-                Hat qaStaHvIS cha'
+                Display Temperature in
                 <select id="temperatureFormat" class="item-select">
-                    <option id="optF" value="0" class="item-select-option">fahrenheit</option>
-                    <option id="optC" value="1" class="item-select-option">celsius</option>
+                    <option id="optF" value="0" class="item-select-option">Fahrenheit</option>
+                    <option id="optC" value="1" class="item-select-option">Celsius</option>
                 </select>
             </label>
 
             <label class="item" id="xDivLocationSelection">
-                muD Daq
+                Weather Location
                 <select id="locationService" class="item-select">
-                    <option id="automatic" value="0" class="item-select-option">De'wI'</option>
-                    <option id="manual" value="1" class="item-select-option">uQ</option>
-                    <option id="disabled" value="2" class="item-select-option">Qotlh</option>
+                    <option id="automatic" value="0" class="item-select-option">Automatic</option>
+                    <option id="manual" value="1" class="item-select-option">Manual</option>
+                    <option id="disabled" value="2" class="item-select-option">Disabled</option>
                 </select>
 
                 <div class="item-container" id="xDivWOID" style="display:none">
-                    <div class="item-container-header" id="woeidTite">DubelmoHchugh woeid 'el</div>
+                    <div class="item-container-header" id="woeidTite">Please enter WOEID</div>
                     <div class="item-container-content">
                         <label class="item">
                             <div class="item-input-wrapper item-input-wrapper-button">
                                 <input type="text" id="xtxtWOEID" class="item-input" style="color:black">
                             </div>
-                            <input type="button" class="item-button item-input-button" value="BEJTAHVIS" id="xbtnWOEID">
+                            <input type="button" class="item-button item-input-button" value="LOOKUP" id="xbtnWOEID">
                         </label>
                     </div>
                 </div>
             </label>
 
             <label class="item" id="xDivWeatherInterval">
-                muD choH
+                Weather Update
                 <select id="weatherInterval" class="item-select">
-                    <option id="opt15" value="15" class="item-select-option">15 Hoch tup</option>
-                    <option id="opt30" value="30" class="item-select-option">Hoch bID rep</option>
-                    <option id="opt60" value="60" class="item-select-option">Hoch rep</option>
+                    <option id="opt15" value="15" class="item-select-option">Every 15 minutes</option>
+                    <option id="opt30" value="30" class="item-select-option">Every half an hour</option>
+                    <option id="opt60" value="60" class="item-select-option">Every hour</option>
                 </select>
             </label>
 
-        </div>
+            </div>
 
-        <div class="item-container-header">Hoch DuH</div>
+        <div class="item-container-header">Appearance Options</div>
         <div class="item-container-content">
 
             <label class="item" id="xDivSidebarLocation" style="display:none">
-                Dop tach Daq
+                Sidebar location
                 <select id="sidebarLocation" class="item-select">
-                    <option value="0" class="item-select-option" selected="selected">nIH</option>
-                    <option value="1" class="item-select-option">poS</option>
+                    <option value="0" class="item-select-option" selected="selected">Right</option>
+                    <option value="1" class="item-select-option">Left</option>
                 </select>
             </label>
 
             <div class="nonaplite">
 
                 <label class="item">
-                    hue choH
+                    Color Selection
                     <select id="colorSelection" class="item-select">
-                        <option value="0" class="item-select-option" selected="selected">De'wI</option>
-                        <option value="1" class="item-select-option">ruQ</option>
+                        <option value="0" class="item-select-option" selected="selected">Automatic</option>
+                        <option value="1" class="item-select-option">Custom</option>
                     </select>
                 </label>
 
                 <div id="xDivColorSelection" style="display:none">
                     <label class="item">
-                        potlhmo' bg hue
+                        Main BG Color
                         <input type="text" class="item-color item-color-normal" id="mainBgColor" value="#000000">
                     </label>
 
                     <label class="item">
-                        'elbogh bIngDaq ghItlh leghlu'
+                        Main Text/Hands Color
                         <input type="text" class="item-color item-color-normal" id="mainColor" value="#FFFFFF">
                     </label>
 
                     <label class="item">
-                        <span id="labelsidebarBgColor">Dop tach hue</span>
+                        <span id="labelsidebarBgColor">Sidebar BG/Second Hand Color</span>
                         <input type="text" class="item-color item-color-normal" id="sidebarBgColor" value="#00FF00">
                     </label>
 
                     <label class="item">
-                        <span id="labelsidebarColor">Dop tach bIngDaq ghItlh leghlu'</span>
+                        <span id="labelsidebarColor">Sidebar Text Color</span>
                         <input type="text" class="item-color item-color-normal" id="sidebarColor" value="#000000">
                     </label>
                 </div>
 
             </div>
 
+            </div>
+
         </div>
-
-    </div>
-
+    
     <div class="item-container popup" id="xDivWOIDlookup">
-        <div class="item-container-header">Daq (veng ghap Sep ghap Sep)</div>
+        <div class="item-container-header">Location (city/state/country/postal)</div>
         <div class="item-container-content">
             <label class="item">
                 <div class="item-input-wrapper item-input-wrapper-button">
-                    <input type="text" id="xtxtAddress" class="item-input" placeholder="Daq (veng ghap Sep ghap Sep)" style="color:black">
+                    <input type="text" id="xtxtAddress" class="item-input" placeholder="City/state/country/postal code" style="color:black">
                 </div>
-                <input type="button" class=" item-button item-input-button" value="DAQ VITU'" id="xbtnWOEIDlookup">
+                <input type="button" class=" item-button item-input-button" value="SEARCH" id="xbtnWOEIDlookup">
                 <div id="results" style="font-size:12px; color:black"></div>
-                <input type="button" class=" item-button" value="SoQmoH" id="xbtnWOEIDlookup" style="width:70px; margin-top:10px" onclick="$('#xDivWOIDlookup').hide();">
+                <input type="button" class=" item-button" value="Close" id="xbtnWOEIDlookup" style="width:70px; margin-top:10px" onclick="$('#xDivWOIDlookup').hide();">
             </label>
         </div>
     </div>
 
     <div class="item-container">
         <div class="button-container">
-            <input type="button" class="item-button" value="choq" id="xbtnSave">
+            <input type="button" class="item-button" value="SAVE" id="xbtnSave">
         </div>
     </div>
 
     <div class="item-container">
         <div class="button-container">
-            <input type="button" class="item-button" value="qIl" id="xbtnCancel">
+            <input type="button" class="item-button" value="CANCEL" id="xbtnCancel">
         </div>
     </div>
 
     <div class="item-container">
         <div class="button-container">
-            <input type="button" value="Huch starbucks" class="item-button" name="submit" onclick="location.href='https://www.paypal.me/yuriygalanter';">
+            <input type="button" value="My Starbucks fund" class="item-button" name="submit" onclick="location.href='https://www.paypal.me/yuriygalanter';">
         </div>
     </div>
 
     <div class="item-container">
         <div class="item-container-content">
             <div class="item" style="font-size:small; line-height:130%">
-                vaj bej Doq'a' rur 'ej qaStaHvIS Hach ben latlh qu Pebble apps 'ej chenmoH qab law' 'oH vIlegh vIvut, nuqneH vISov,-qet jIH qa'vIn chaH. 'ut nIn wIgh porghvam je. vaj chaq starbucks wovbe' (pagh QongDaqDaj bIngDaq ad)-click SoH Qo' qet jIH nIn :) ghIlDeSten!
+                If you like this watchface and would like to see it further developed as well as other wonderful Pebble apps and faces created, please know - I run on coffee. It's an essential fuel for inspiration and creativity. So if you click the Fund button above (or the ad below) - I won't run out of fuel :) Thanks!
             </div>
         </div>
     </div>
@@ -352,8 +352,8 @@
                     locationService: LOCATION_AUTOMATIC,
                     secondaryInfoType: SECONDARY_INFO_CURRENT_TIME,
                     timeZoneName: '',
-                    ampmText: '',
-                    woeid: getURLVariable('version') >= '2.18' ? '' : 0,
+                    ampmText:'',
+                    woeid: getURLVariable('version') >= '2.18'? '' : 0,
                     weatherInterval: 60,
                     timeSeparator: TIME_SEPARATOR_COLON,
                     sidebarLocation: SIDEBAR_LOCATION_RIGHT,
@@ -366,9 +366,9 @@
                 };
             }
 
-
+            
             // setting dropdown values
-            $('#mainClock').val(settings.mainClock != null ? settings.mainClock : MAIN_CLOCK_ANALOG);
+            $('#mainClock').val(settings.mainClock != null ? settings.mainClock: MAIN_CLOCK_ANALOG);
 
             //hiding second hand selection for large time
             if (settings.mainClock == MAIN_CLOCK_DIGITAL) {
@@ -401,7 +401,7 @@
             if (getURLVariable("platform") == "chalk") {
                 $("#secondaryInfoLabel").html("Circle bottom")
             }
-
+            
 
 
             //adjusting weather visuals based on location service type
@@ -473,11 +473,11 @@
                 //changing titles for Chalk
                 if (getURLVariable("platform") == "chalk") {
 
-                    $("#labelsidebarBgColor").html("gho cha'DIch ghop pagh hue");
-                    $("#labelsidebarColor").html("gho bIngDaq ghItlh leghlu' ghap Icon hue");
-
+                    $("#labelsidebarBgColor").html("Circle BG/Second Hand color");
+                    $("#labelsidebarColor").html("Circle Text/Icon color");
+                   
                 }
-
+                
 
             }
 
@@ -490,7 +490,7 @@
 
                 //for chalk changing text of ampm label and limitation of characters
                 if (getURLVariable("platform") == "chalk") {
-                    $("#ampmTitle").html("bIngDaq ghItlh leghlu' cha' gho yor")
+                    $("#ampmTitle").html("Text to display on circle top")
                 }
 
                 //showing bluetooth icon visibility
@@ -505,12 +505,12 @@
             if (getURLVariable('version') >= '2.03' /* && getURLVariable("platform") != "chalk" */) {
                 $('#ampmText').prop("maxlength", 40);
             }
-
-            if (getURLVariable('version') >= '2.10') { // enabling option "military time" for secondary info
-                $('#secondaryInfoType option[value="4"]').css('display', '');
+            
+            if (getURLVariable('version') >= '2.10' ) { // enabling option "military time" for secondary info
+                $('#secondaryInfoType option[value="4"]').css('display','');
             }
 
-            if (getURLVariable('version') >= '2.13' && getURLVariable("platform") != "aplite") { // enabling option "step counter" for secondary info
+            if (getURLVariable('version') >= '2.13' && getURLVariable("platform")!= "aplite") { // enabling option "step counter" for secondary info
                 $('#secondaryInfoType option[value="5"]').css('display', '');
             }
 
@@ -519,7 +519,7 @@
 
                 if (getURLVariable('version') >= '2.18') {
                     //renaming woeid
-                    $('#woeidTite').html('DubelmoHchugh Quv \'el:');
+                    $('#woeidTite').html('Please enter coordinates: lat,long');
 
                 } else {
                     //disabling manual location
@@ -540,7 +540,7 @@
 
             // after version 2.21 enable detailed location
             if (getURLVariable('version') >= '2.21') {
-                $("#optLocationStreet").html("Daq (mIw)");
+                $("#optLocationStreet").html("Location (street)");
                 $("#optLocationTown").show();
                 $("#optLocationCountry").show();
 
@@ -559,13 +559,13 @@
 
                 if ($('#locationService').val() == '1') { // if we selected manual location check and save WOEID
                     if ($('#xtxtWOEID').val() == '') {
-                        if (getURLVariable('version') >= '2.18') alert('DubelmoHchugh Quv \'el');
+                        if (getURLVariable('version') >= '2.18') alert('Please enter coordinates');
                         else alert('Please enter WOEID');
                         return;
                     }
                 }
 
-                settings.woeid = getURLVariable('version') >= '2.18' ? $('#xtxtWOEID').val() : parseInt($('#xtxtWOEID').val());
+                settings.woeid = getURLVariable('version') >= '2.18'? $('#xtxtWOEID').val() : parseInt($('#xtxtWOEID').val());
                 settings.forecastIoApiKey = $('#xtxtForecastIoApiKey').val();
 
                 var selS = $('#secondaryInfoType').get(0);
@@ -669,19 +669,19 @@
                 $('#results').children().remove();
 
 
-                if (getURLVariable('version') >= '2.18') { //for this version and after use lat,long lookup for forecast.io
+                if (getURLVariable('version') >= '2.18') { //for this version and after use lat,long lookup for forecast.io 
 
                     $.getJSON('http://nominatim.openstreetmap.org/search?q=' + $('#xtxtAddress').val() + '&format=json', function (data) {
 
                         if (data.count == 0) { // no results
-                            $('#results').append('<div>pagh ghot\'e\'</div>');
+                            $('#results').append('<div>No Results</div>');
                         } else { //looping thru results
-                            $('#results').append('<div><i>lang Daq below Quv Suq</i></div>');
+                            $('#results').append('<div><i>Tap location below to get coordinates</i></div>');
                             $('#results').append('<hr/>');
                             for (i = 0; i < data.length; i++) {
                                 result = data[i];
-                                $('#results').append('<div onclick = "$(\'#xtxtWOEID\').val(\'' + result.lat + ',' + result.lon + '\');$(\'#xDivWOIDlookup\').hide();">' +
-                                    (result.display_name.length > 60 ? result.display_name.substring(0, 57) + '...' : result.display_name) +
+                                $('#results').append('<div onclick = "$(\'#xtxtWOEID\').val(\'' + result.lat + ',' + result.lon + '\');$(\'#xDivWOIDlookup\').hide();">' + 
+                                    (result.display_name.length > 60? result.display_name.substring(0, 57) + '...': result.display_name) +
                                   '</div>');
                             }
                         }
@@ -730,7 +730,5 @@
     </script>
 
 </body>
-
-
 
 </html>
