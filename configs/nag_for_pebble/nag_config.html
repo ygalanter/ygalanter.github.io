@@ -1,0 +1,321 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Nag config</title>
+    <script type="text/javascript" src="slate.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="slate.min.css" />
+
+
+    <script type="text/javascript">
+
+        //buzz consts
+        var BUZZ_DISABLED = 0, BUZZ_SHORT = 1, BUZZ_LONG = 2, BUZZ_DOUBLE = 3;
+
+        var BUZZ_SUPER_MARIO = 4;
+        var BUZZ_TMNT = 5;
+        var BUZZ_VOLTRON = 6;
+        var BUZZ_FINAL_FANTASY = 7;
+        var BUZZ_STAR_WARS = 8;
+        var BUZZ_POWER_RANGERS = 9
+        var BUZZ_JAMES_BOND = 10;
+        var BUZZ_MORTAL_COMBAT = 11;
+
+        //start const
+        var START_IMMEDIATLY = 0, START_ON_15MIN = 1, START_ON_HALFHOUR = 2, START_ON_HOUR = 3;
+
+
+        var settings;
+
+        // to get value of query string
+        function getURLVariable(name) {
+            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+            var regexS = "[\\?&]" + name + "=([^&#]*)",
+                regex = new RegExp(regexS),
+                results = regex.exec(window.location.href);
+            if (results == null) return "";
+            else return results[1];
+        }
+
+
+        $(document).ready(function () {
+
+            //showing quiet time for this version & above
+            if (getURLVariable("version") >= "1.5" && getURLVariable("appid") != '' & getURLVariable("accounttoken") != '') {
+
+                // for test use + "&flags=3"
+                $.getJSON("https://kiezelpay.com/api/v1/status?appid="  + getURLVariable("appid") + "&accounttoken=" + getURLVariable("accounttoken"), function (data) {
+
+                    if (data.status == "unlicensed") { // if feature still unlicensed - show button to unlock it
+                        $("#xdivUnlock").show();
+                    } else { // otherwise show feature & hide ads
+                        $("#quietTimeContainer").show();
+                        $("#ads").hide();
+                    }
+
+                    
+                    
+
+                });
+
+            }
+
+            // after this version adding more buzz patterns
+            if (getURLVariable("version") >= "1.53") {
+                $('#buzzSpanIntensityClassic').hide();
+                $('#buzzSpanIntensityModern').show();
+            } else {
+                $('#buzzSpanIntensityClassic').show();
+                $('#buzzSpanIntensityModern').hide();
+            }
+
+
+            // loading settings
+            try {
+               settings = JSON.parse(localStorage.getItem("nag_settings"));
+            }
+            catch(err) {
+               settings = null;
+            }
+
+            if (settings == null) {
+                settings = {
+                    buzzIntensity: BUZZ_SHORT,
+                    buzzInterval: 60,
+                    buzzStart: START_ON_HOUR,
+                    enableQuietTime: 0,
+                    quietTimeStartHour: 23,
+                    quietTimeEndHour: 6
+                };
+            }
+
+       
+
+            // loading buzz settings
+            if (getURLVariable("version") < "1.53") {
+                $('#buzzIntensityClassic').val(settings.buzzIntensity);
+            } else {
+                $('#buzzIntensityModern').val(settings.buzzIntensity);
+            }
+            $('#buzzInterval').val(settings.buzzInterval);
+            $('#buzzStart').val(settings.buzzStart);
+
+            if (getURLVariable("version") < "1.53") setSliderText('buzzIntensityClassic', settings.buzzIntensity);
+            setSliderText('buzzStart', settings.buzzStart);
+
+            // loading quiet timne settings
+            $("#enableQuietTime").prop("checked", settings.enableQuietTime && settings.enableQuietTime == 1);
+            $("#quietTimeStartHour").val(settings.quietTimeStartHour != null ? settings.quietTimeStartHour : 23);
+            $("#quietTimeEndHour").val(settings.quietTimeEndHour != null ? settings.quietTimeEndHour : 6);
+            $("#quietTimeStartHour").prop("disabled", !$("#enableQuietTime").prop("checked"));
+            $("#quietTimeEndHour").prop("disabled", !$("#enableQuietTime").prop("checked"));
+
+
+            //assigning save button
+            $('#xbtnSave, #xbtnUnlock').click(function () {
+
+                if (this.id == "xbtnUnlock") { // if user is unlocking premium feature - send just this value
+
+                    settings = { unlock: 1 };
+
+                } else { // otherwise normal config save/send
+
+                    // saveguard
+                    settings.buzzInterval = parseInt($('#buzzInterval').val());
+                    settings.quietTimeStartHour = parseInt($("#quietTimeStartHour").val());
+                    settings.quietTimeEndHour = parseInt($("#quietTimeEndHour").val());
+
+                    localStorage.setItem("nag_settings", JSON.stringify(settings));
+                }
+
+                var location = (decodeURIComponent(getURLVariable('return_to')) || "pebblejs://close#") + encodeURIComponent(JSON.stringify(settings));
+                document.location = location;
+
+            })
+
+         
+            //setting value of slider text
+            function setSliderText(slider_id, slider_value) {
+                var slider_text
+
+                if (slider_id == 'buzzIntensityClassic') {
+                    switch (slider_value) {
+                        case BUZZ_DISABLED: slider_text = 'Disabled'; break;
+                        case BUZZ_SHORT: slider_text = 'Short'; break;
+                        case BUZZ_LONG: slider_text = 'Long'; break;
+                        case BUZZ_DOUBLE: slider_text = 'Double'; break;
+                    }
+                } else if (slider_id == 'buzzStart') {
+                    switch (slider_value) {
+                        case START_IMMEDIATLY: slider_text = 'immediately'; break;
+                        case START_ON_HOUR: slider_text = 'On hour change'; break;
+                        case START_ON_HALFHOUR: slider_text = 'On half-hour change'; break;
+                        case START_ON_15MIN: slider_text = 'On 15-min change'; break;
+                    }
+                }
+
+                $('#label' + slider_id).html(slider_text);
+            }
+
+            //setting value of slider
+            $('#buzzIntensityClassic, #buzzIntensityModern, #buzzStart, #buzzInterval, #quietTimeStartHour, #quietTimeEndHour, #enableQuietTime').change(function (e) {
+
+                e.preventDefault();
+
+                // in case of checkbox
+                if (this.id == "enableQuietTime") {
+
+                    $("#quietTimeStartHour").prop("disabled", !this.checked);
+                    $("#quietTimeEndHour").prop("disabled", !this.checked);
+                    settings[this.id] = this.checked ? 1 : 0;
+
+                } else {
+
+                    var intVal = parseInt(this.value);
+                    settings[this.id == 'buzzIntensityClassic' || this.id == 'buzzIntensityModern'? 'buzzIntensity': this.id] = intVal;
+
+                    if ((this.id == "buzzIntensityClassic" && getURLVariable("version") < "1.53") || this.id == "buzzStart") {
+                        setSliderText(this.id, intVal);
+                    }
+
+                }
+
+                
+            })
+        }
+     )
+        
+    </script>
+
+    
+
+
+</head>
+<body>
+
+    <div class="item-container">
+        <div class="item-container-header">Buzz Settings</div>
+
+        <div class="item-container-content">
+            <label class="item">
+                Buzz Intensity:
+
+                <span id="buzzSpanIntensityClassic">
+                    <span id="labelbuzzIntensityClassic"></span>
+                    <input type="range" class="item-slider" name="buzzIntensityClassic" id="buzzIntensityClassic" value="0" min="0" max="3">
+                </span>
+
+                <span id="buzzSpanIntensityModern">
+                    <select name="buzzIntensityModern" id="buzzIntensityModern" dir='rtl' class="item-select">
+                        <option class="item-select-option" value="0">Disabled</option>
+                        <option class="item-select-option" value="1">Short</option>
+                        <option class="item-select-option" value="2">Long</option>
+                        <option class="item-select-option" value="3">Double</option>
+                        <option class="item-select-option" value="4">Super Mario</option>
+                        <option class="item-select-option" value="5">TMNT</option>
+                        <option class="item-select-option" value="6">Voltron</option>
+                        <option class="item-select-option" value="7">Final Fantasy</option>
+                        <option class="item-select-option" value="8">Star Wars</option>
+                        <option class="item-select-option" value="9">Power Rangers</option>
+                        <option class="item-select-option" value="10">James Bond</option>
+                        <option class="item-select-option" value="11">Mortal Kombat</option>
+                    </select><br />
+
+                    <span style="font-size:small !important;font-style:italic">
+                        Vibe themes by <a href="https://gearside.com/custom-vibration-patterns-mobile-devices/">Gearside</a>
+                        </span>
+                    </span>
+
+</label>
+        </div>
+
+        <div class="item-container-content">
+            <label class="item">
+                Buzz Interval (2 - 120 minutes)
+                <div class="item-input-wrapper">
+                    <input type="number" min="1" max="120" required class="item-input" name="buzzInterval" id="buzzInterval" value="1">
+
+                </div>
+            </label>
+        </div>
+
+        <div class="item-container-content">
+            <label class="item">
+                Buzz Start Time: <span id="labelbuzzStart"></span><br /><br />
+                <input type="range" class="item-slider" name="buzzStart" id="buzzStart" value="0" min="0" max="3">
+            </label>
+        </div>
+
+    </div>
+
+    <div class="item-container" id="quietTimeContainer" style="display:none">
+        <div class="item-container-header">Quiet Time Settings</div>
+        <div class="item-container-content">
+            <label class="item">
+                Enable Quiet Time
+                <input type="checkbox" class="item-toggle" name="enableQuietTime" id="enableQuietTime">
+            </label>
+        </div><div class="item-container-content">
+            <label class="item">
+                Start Hour (0 - 23)
+                <div class="item-input-wrapper">
+                    <input type="number" min="0" max="23" required class="item-input" name="quietTimeStartHour" id="quietTimeStartHour" value="23" disabled>
+                </div>
+            </label>
+        </div><div class="item-container-content">
+            <label class="item">
+                End Hour (0 - 23)
+                <div class="item-input-wrapper">
+                    <input type="number" min="0" max="23" required class="item-input" name="quietTimeEndHour" id="quietTimeEndHour" value="6" disabled>
+                </div>
+            </label>
+        </div>
+    </div>
+
+    <div class="item-container">
+        <div class="button-container">
+            <input type="button" class="item-button" value="SET" id="xbtnSave">
+        </div>
+    </div>
+
+    <div id="ads">
+
+        <div class="item-container" style="display:none" id="xdivUnlock">
+            <div class="button-container">
+                <input type="button" value="Unlock 'Quiet Time' $0.99 " class="item-button" name="submit" id="xbtnUnlock"><br />
+                After clicking this button, check your watch for code and follow the instructions 
+            </div>
+        </div>
+
+        <div class="item-container">
+            <div class="button-container">
+                <input type="button" value="My Starbucks fund" class="item-button" name="submit" onclick="location.href='https://www.paypal.me/yuriygalanter';">
+            </div>
+        </div>
+
+        <div class="item-container">
+            <div class="item-container-content">
+                <div class="item" style="font-size:small; line-height:130%">
+                    If you like this watchface and would like to see it further developed as well as other wonderful Pebble apps and faces created, please know - I run on coffee. It's an essential fuel for inspiration and creativity. So if you click the Fund button above (or the ad below) - I won't run out of fuel :) Thanks!
+                </div>
+            </div>
+        </div>
+
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Pebble Config -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-8184318363505287"
+             data-ad-slot="7086382952"
+             data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+    </div>
+
+
+</body>
+
+</html>
