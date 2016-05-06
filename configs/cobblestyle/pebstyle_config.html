@@ -93,6 +93,7 @@
 
                         <option value="1" class="item-select-option" selected="selected">Local Time</option>
                         <option value="4" class="item-select-option" style="display:none">Local Military Time</option>
+                        <option id = "optUtcMilitaryTime" value="0" class="item-select-option" style="display:none">UTC Military Time</option> <!--0 - UTC timezone offset--> 
                         <option value="5" class="item-select-option" style="display:none">Step Counter</option>
                     </optgroup>
 
@@ -303,6 +304,7 @@
         var SECONDARY_INFO_CURRENT_LOCATION_COUNTRY_LEVEL = 7;
 
         var SECONDARY_INFO_CURRENT_MILITARY_TIME = 4;
+        var SECONDARY_INFO_UTC_MILITARY_TIME = 0;
         var SECONDARY_INFO_HEALTH_STEP_COUNTER = 5;
         //otherwise timezone offset
 
@@ -387,6 +389,7 @@
                 case SECONDARY_INFO_DISABLED:
                 case SECONDARY_INFO_CURRENT_TIME:
                 case SECONDARY_INFO_CURRENT_MILITARY_TIME:
+                case SECONDARY_INFO_UTC_MILITARY_TIME:
                 case SECONDARY_INFO_CURRENT_LOCATION_STREET_LEVEL:
                 case SECONDARY_INFO_CURRENT_LOCATION_TOWN_LEVEL:
                 case SECONDARY_INFO_CURRENT_LOCATION_COUNTRY_LEVEL:
@@ -544,6 +547,12 @@
                 $("#optLocationTown").show();
                 $("#optLocationCountry").show();
 
+            }
+
+
+            // after version 2.23 enable UTC Military Time
+            if (getURLVariable('version') >= '2.23') {
+                $("#optUtcMilitaryTime").show();
             }
 
 
