@@ -666,6 +666,7 @@
 
                     $.getJSON('http://api.timezonedb.com/?' + this.options[this.selectedIndex].getAttribute('data-coordinates') + '&key=2F2TELTVDRIB&format=json', function (data) {
                         that.options[that.selectedIndex].value = parseInt(data.gmtOffset) / 60;
+                        settings[that.id] = parseInt(data.gmtOffset) / 60;
                     })
 
                 }
