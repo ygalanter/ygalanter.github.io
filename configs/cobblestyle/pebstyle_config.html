@@ -99,25 +99,25 @@
 
                     <optgroup label="Or Timezone">
                         <!--UTC timezone offcets in minutes-->
-                        <option value="480" data-timezone="BJS" class="item-select-option">Beijing Time</option>
-                        <option value="60" data-timezone="BRU" class="item-select-option">Brussels Time</option>
-                        <option value="-180" data-timezone="BUE" class="item-select-option">Buenos Aires Time</option>
-                        <option value="130" data-timezone="CAI" class="item-select-option">Cairo Time</option>
-                        <option value="420" data-timezone="JKT" class="item-select-option">Jakarta Time</option>
-                        <option value="480" data-timezone="HKG" class="item-select-option">Hong Kong Time</option>
+                        <option value="480" data-timezone="BJS" data-coordinates="lat=39.90615&lng=116.39125" class="item-select-option">Beijing Time</option>
+                        <option value="60" data-timezone="BRU" data-coordinates="lat=50.84683&lng=4.35170" class="item-select-option">Brussels Time</option>
+                        <option value="-180" data-timezone="BUE" data-coordinates="lat=-34.61607&lng=-58.43329" class="item-select-option">Buenos Aires Time</option>
+                        <option value="130" data-timezone="CAI" data-coordinates="lat=30.03503&lng=31.56475" class="item-select-option">Cairo Time</option>
+                        <option value="420" data-timezone="JKT" data-coordinates="lat=-6.17542&lng=106.82718" class="item-select-option">Jakarta Time</option>
+                        <option value="480" data-timezone="HKG" data-coordinates="lat=22.27942&lng=114.16281" class="item-select-option">Hong Kong Time</option>
                         <option value="0" data-timezone="LON" class="item-select-option">London Time</option>
-                        <option value="-480" data-timezone="LAX" class="item-select-option">Los Angeles Time</option>
-                        <option value="60" data-timezone="MAD" class="item-select-option">Madrid Time</option>
-                        <option value="-600" data-timezone="MEL" class="item-select-option">Melbourne Time</option>
-                        <option value="-360" data-timezone="MEX" class="item-select-option">Mexico City Time</option>
-                        <option value="180" data-timezone="MOW" class="item-select-option">Moscow Time</option>
-                        <option value="330" data-timezone="DEL" class="item-select-option">New Delhi Time</option>
-                        <option value="-300" data-timezone="NYC" class="item-select-option">New York Time</option>
-                        <option value="60" data-timezone="PAR" class="item-select-option">Paris Time</option>
-                        <option value="60" data-timezone="ROM" class="item-select-option">Rome Time</option>
-                        <option value="600" data-timezone="SYD" class="item-select-option">Sydney Time</option>
-                        <option value="540" data-timezone="TYO" class="item-select-option">Tokyo Time</option>
-                        <option value="-300" data-timezone="DCA" class="item-select-option">Washington</option>
+                        <option value="-480" data-timezone="LAX" data-coordinates="lat=34.02106&lng=-118.41174" class="item-select-option">Los Angeles Time</option>
+                        <option value="60" data-timezone="MAD" data-coordinates="lat=40.47806&lng=-3.70343" class="item-select-option">Madrid Time</option>
+                        <option value="-600" data-timezone="MEL" data-coordinates="lat=-37.81439&lng=144.96316" class="item-select-option">Melbourne Time</option>
+                        <option value="-360" data-timezone="MEX" data-coordinates="lat=19.43261&lng=-99.13321" class="item-select-option">Mexico City Time</option>
+                        <option value="180" data-timezone="MOW" data-coordinates="lat=55.72520&lng=37.62896" class="item-select-option">Moscow Time</option>
+                        <option value="330" data-timezone="DEL" data-coordinates="lat=28.64431&lng=77.09239" class="item-select-option">New Delhi Time</option>
+                        <option value="-300" data-timezone="NYC" data-coordinates="lat=40.69785&lng=-73.97963" class="item-select-option">New York Time</option>
+                        <option value="60" data-timezone="PAR" data-coordinates="lat=48.85888&lng=2.34694" class="item-select-option">Paris Time</option>
+                        <option value="60" data-timezone="ROM" data-coordinates="lat=41.89880&lng=12.54513" class="item-select-option">Rome Time</option>
+                        <option value="600" data-timezone="SYD" data-coordinates="lat=-33.76965&lng=150.80178" class="item-select-option">Sydney Time</option>
+                        <option value="540" data-timezone="TYO" data-coordinates="lat=28.34516&lng=145.02961" class="item-select-option">Tokyo Time</option>
+                        <option value="-300" data-timezone="DCA" data-coordinates="lat=38.89381&lng=-77.01457" class="item-select-option">Washington</option>
                     </optgroup>
 
                 </select>
@@ -657,6 +657,16 @@
                     } else {
                         $('#xdivbluetoothIcon').hide();
                     }
+
+                }
+
+                // YG 2016-05-09: Now getting timezone offset dynamically (so it's always correct event with DST)
+                if (this.id == 'secondaryInfoType' && this.options[this.selectedIndex].getAttribute('data-coordinates') != null) {
+                    var that = this;
+
+                    $.getJSON('http://api.timezonedb.com/?' + this.options[this.selectedIndex].getAttribute('data-coordinates') + '&key=2F2TELTVDRIB&format=json', function (data) {
+                        that.options[that.selectedIndex].value = parseInt(data.gmtOffset) / 60;
+                    })
 
                 }
 
