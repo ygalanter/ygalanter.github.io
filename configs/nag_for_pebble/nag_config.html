@@ -85,6 +85,7 @@
                     buzzInterval: 60,
                     buzzStart: START_ON_HOUR,
                     enableQuietTime: 0,
+                    // not used after v1.59, pebble native quiet time used instead
                     quietTimeStartHour: 23,
                     quietTimeEndHour: 6
                 };
@@ -106,10 +107,17 @@
 
             // loading quiet timne settings
             $("#enableQuietTime").prop("checked", settings.enableQuietTime && settings.enableQuietTime == 1);
+            
+            // not used after v1.59, pebble native quiet time used instead
             $("#quietTimeStartHour").val(settings.quietTimeStartHour != null ? settings.quietTimeStartHour : 23);
             $("#quietTimeEndHour").val(settings.quietTimeEndHour != null ? settings.quietTimeEndHour : 6);
             $("#quietTimeStartHour").prop("disabled", !$("#enableQuietTime").prop("checked"));
             $("#quietTimeEndHour").prop("disabled", !$("#enableQuietTime").prop("checked"));
+            // v1.59, pebble native quiet time used instead
+            if (getURLVariable("version") >= "1.59") {
+                $('#qStartTime').hide();
+                $('#qStartTime').hide();
+            }
 
 
             //assigning save button
@@ -256,14 +264,14 @@
                 Enable Quiet Time
                 <input type="checkbox" class="item-toggle" name="enableQuietTime" id="enableQuietTime">
             </label>
-        </div><div class="item-container-content">
+        </div><div class="item-container-content" id="qStartTime" >
             <label class="item">
                 Start Hour (0 - 23)
                 <div class="item-input-wrapper">
                     <input type="number" min="0" max="23" required class="item-input" name="quietTimeStartHour" id="quietTimeStartHour" value="23" disabled>
                 </div>
             </label>
-        </div><div class="item-container-content">
+        </div><div class="item-container-content" id = "qEndTime">
             <label class="item">
                 End Hour (0 - 23)
                 <div class="item-input-wrapper">
